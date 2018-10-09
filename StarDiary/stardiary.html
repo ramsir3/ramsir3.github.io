@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="diaryApp">
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'></link>
+	<link href='style.css' rel='stylesheet' type='text/css'></link>
+	<script type="text/javascript" src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular-sanitize.js"></script>
+	<script type="text/javascript" src = "diaryApp.js"></script>
+</head>
+<body ng-controller="diaryController" ng-click="edit()">
+	<div class="container">
+		<h1>*Diary*</h1>
+		<div class="screen">
+			<div class="form-area" role="form">
+				<textarea id="txt" ng-model="in"></textarea>
+				<div class="side-button">
+					<button class="top" ng-click="addEntry()">submit</button>
+					<br>
+					<button ng-click="addT()">**</button>
+					<br>
+					<button ng-click="addL()">(l)</button>
+					<br>
+					<button ng-click="addM()">(m)</button>
+					<br>
+					<button class="bottom" ng-click="addS()">(s)</button>
+				</div>
+			</div>
+			<br>
+			<div class="list-area">
+				<div class="preview" style="align-contents: center" ng-bind-html="trust(star(in))"></div>
+				<div class="entry-list" ng-show="entries.length">
+					<div class="entry" ng-repeat="e in entries">
+						<div class="text" ng-bind-html="trust(display(e))"></div>
+						<br>
+						<div class="date" ng-bind="e.time | date:'EEEE, MMMM d, y h:mm a'"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
